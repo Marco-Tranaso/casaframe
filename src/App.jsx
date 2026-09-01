@@ -162,6 +162,7 @@ function Hero() {
 
         {/* Prezzo + CTA — su mobile dopo il video */}
         <div className="order-3 md:col-start-1 md:row-start-2">
+          <p className="font-serif text-[20px] text-[#1B1A17]">Da €49 per immobile</p>
 
           <div className="mt-6 flex flex-col items-start gap-3">
             <a
