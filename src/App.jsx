@@ -63,7 +63,7 @@ function VideoPlaceholder({ label, sub }) {
         </p>
 
         {sub && (
-          <p className="mt-1 text-[11px] tracking-wide text-white/70">
+          <p className="mt-1 text-[16px] tracking-wide text-white/70">
             {sub}
           </p>
         )}
@@ -199,6 +199,15 @@ function Hero() {
 }
 
 function BeforeAfter() {
+  const photos = [
+    "/images/casa1.jpg",
+    "/images/casa2.jpg",
+    "/images/casa3.jpg",
+    "/images/casa4.jpg",
+    "/images/casa5.jpg",
+    "/images/casa6.jpg",
+  ];
+
   return (
     <section className="border-t border-[#E4E0D8] bg-[#FBFAF7]">
       <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
@@ -206,35 +215,59 @@ function BeforeAfter() {
           <h2 className="font-serif text-[32px] leading-tight text-[#1B1A17] sm:text-[38px]">
             Hai già le foto. Noi creiamo il video.
           </h2>
+
           <p className="mt-4 text-[16px] leading-relaxed text-[#4A473F]">
             Parti dalle foto che usi già per l'annuncio. Il resto lo facciamo noi.
           </p>
         </div>
 
         <div className="mt-14 grid items-center gap-6 sm:grid-cols-[1fr_auto_1fr]">
+
+          {/* FOTO */}
           <div className="rounded-2xl border border-[#E4E0D8] bg-white p-6">
-            <p className="text-[12px] text-[#8C867B]">Foto dell'immobile</p>
+            <p className="text-[12px] text-[#8C867B]">
+              Foto dell'immobile
+            </p>
+
             <div className="mt-4 grid grid-cols-3 gap-2">
-              {Array.from({ length: 9 }).map((_, i) => (
-                <div
+              {photos.map((src, i) => (
+                <img
                   key={i}
-                  className="aspect-square rounded-md bg-gradient-to-br from-[#EDEAE2] to-[#DDD8CC]"
+                  src={src}
+                  alt={`Foto immobile ${i + 1}`}
+                  className="aspect-square w-full rounded-md object-cover"
                 />
               ))}
             </div>
           </div>
 
+          {/* FRECCIA */}
           <div className="flex justify-center text-[#B08D57]">
             <ArrowRight size={24} className="hidden sm:block" />
-            <span className="text-[13px] text-[#8C867B] sm:hidden">diventa</span>
+            <span className="text-[13px] text-[#8C867B] sm:hidden">
+              diventa
+            </span>
           </div>
 
+          {/* VIDEO */}
           <div className="rounded-2xl border border-[#1B1A17] bg-[#1B1A17] p-6">
-            <p className="text-[12px] text-[#B08D57]">Video CasaFrame</p>
-            <div className="mt-4 flex aspect-[3/2] items-center justify-center rounded-md bg-gradient-to-br from-[#2E2B24] to-[#17160F]">
-              <Play size={28} className="text-[#C9A45C]" fill="currentColor" />
+            <p className="text-[12px] text-[#B08D57]">
+              Video CasaFrame
+            </p>
+
+            <div className="mt-4 aspect-[3/2] overflow-hidden rounded-md bg-black">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="h-full w-full object-cover"
+              >
+                <source src="/videos/hero.mp4" type="video/mp4" />
+              </video>
             </div>
           </div>
+
         </div>
       </div>
     </section>
