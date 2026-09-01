@@ -45,15 +45,29 @@ function PhoneFrame({ children, className = "" }) {
 
 function VideoPlaceholder({ label, sub }) {
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-gradient-to-b from-[#232019] to-[#141310] text-center">
-      <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#B08D57]/50 text-[#C9A45C]">
-        <Play size={18} className="ml-0.5" fill="currentColor" />
+    <div className="relative h-full w-full overflow-hidden bg-black">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="h-full w-full object-cover"
+      >
+        <source src="/public/videos/hero.mp4" type="video/mp4" />
+      </video>
+
+      {/* Testo sopra il video */}
+      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-5 pt-16">
+        <p className="font-serif text-[15px] leading-snug text-white">
+          {label}
+        </p>
+
+        {sub && (
+          <p className="mt-1 text-[11px] tracking-wide text-white/70">
+            {sub}
+          </p>
+        )}
       </div>
-      <div className="px-6">
-        <p className="font-serif text-[15px] leading-snug text-[#F0EDE6]">{label}</p>
-        {sub && <p className="mt-1 text-[11px] tracking-wide text-[#8C867B]">{sub}</p>}
-      </div>
-      {/* SOSTITUISCI: <video autoPlay muted loop playsInline src={VIDEO_SRC} className="h-full w-full object-cover" /> */}
     </div>
   );
 }
