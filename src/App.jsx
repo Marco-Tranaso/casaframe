@@ -53,7 +53,7 @@ function VideoPlaceholder({ label, sub }) {
         playsInline
         className="h-full w-full object-cover"
       >
-        <source src="/public/videos/hero.mp4" type="video/mp4" />
+       <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
 
       {/* Testo sopra il video */}
