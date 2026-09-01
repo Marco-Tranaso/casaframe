@@ -86,14 +86,17 @@ function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-[#E4E0D8] bg-[#F6F4F0]/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
-        <a href="#top" className="flex items-baseline gap-2">
-          <span className="font-serif text-[20px] tracking-tight text-[#1B1A17]">
-            CasaFrame
-          </span>
-          <span className="hidden text-[11px] text-[#8C867B] sm:inline">
-            Real Estate Video
-          </span>
-        </a>
+<a href="#top" className="flex items-center gap-2">
+  <img
+    src="/images/logo-casaframe.jpg"
+    alt=""
+    className="h-12 w-12 object-contain"
+  />
+
+  <span className="font-serif text-[20px] tracking-tight text-[#1B1A17]">
+    CasaFrame
+  </span>
+</a>
 
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
