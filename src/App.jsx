@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu, X, Play, ArrowRight } from "lucide-react";
+import { Menu, X, Play, ArrowRight, Gift } from "lucide-react";
 
 /**
  * CasaFrame — Landing Page
@@ -23,6 +23,8 @@ const MSG_3 =
   "Ciao sono interessato al pacchetto da 3 video. Vorrei maggiori informazioni.";
 const MSG_5 =
   "Ciao sono interessato al pacchetto da 5 video.";
+const MSG_DEMO =
+  "Ciao! Vorrei richiedere una demo gratuita per il mio immobile. Vi mando le foto qui.";
 
 // ---------- Design tokens (via Tailwind arbitrary values) ----------
 // bg:      #F6F4F0 (avorio)
@@ -53,7 +55,8 @@ function VideoPlaceholder({ label, sub }) {
         playsInline
         className="h-full w-full object-cover"
       >
-       <source src="/videos/hero.mp4" type="video/mp4" />
+        {/* SOSTITUISCI: percorso video reale */}
+        <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
 
       {/* Testo sopra il video */}
@@ -77,6 +80,7 @@ function Navbar() {
   const links = [
     { href: "#showcase", label: "Esempi" },
     { href: "#come-funziona", label: "Come funziona" },
+    { href: "#demo", label: "Demo gratuita" },
     { href: "#prezzi", label: "Prezzi" },
   ];
   return (
@@ -191,6 +195,12 @@ function Hero() {
             <p className="text-[13px] text-[#8C867B]">
               Ti bastano le foto dell'immobile. Al resto pensiamo noi.
             </p>
+            <a
+              href="#demo"
+              className="text-[13px] text-[#B08D57] underline underline-offset-4 hover:text-[#1B1A17]"
+            >
+              Non sei sicuro? Richiedi una demo gratuita →
+            </a>
           </div>
         </div>
       </div>
@@ -342,6 +352,67 @@ function HowItWorks() {
   );
 }
 
+function FreeDemo() {
+  const points = [
+    "Mandaci 3–5 foto del tuo immobile",
+    "Creiamo un video di prova, gratis",
+    "Nessun impegno, nessuna carta di credito",
+  ];
+  return (
+    <section id="demo" className="border-t border-[#E4E0D8] bg-[#1B1A17]">
+      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
+        <div className="flex flex-col items-start gap-10 md:flex-row md:items-center md:justify-between">
+          <div className="max-w-lg">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#B08D57]/40 bg-[#B08D57]/10 px-3 py-1 text-[12px] text-[#B08D57]">
+              <Gift size={14} />
+              Demo gratuita
+            </span>
+
+            <h2 className="mt-5 font-serif text-[32px] leading-tight text-[#F6F4F0] sm:text-[38px]">
+              Non convinto? Provalo prima di pagare.
+            </h2>
+
+            <p className="mt-4 text-[16px] leading-relaxed text-[#D8D3C8]">
+              Mandaci le foto di un tuo immobile e ti creiamo una demo
+              video gratuita, senza impegno. Se ti piace il risultato,
+              procediamo con il video completo.
+            </p>
+
+            <ul className="mt-6 space-y-2.5 text-[14px] text-[#D8D3C8]">
+              {points.map((p) => (
+                <li key={p} className="flex items-start gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#B08D57]" />
+                  {p}
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={waLink(MSG_DEMO)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#F6F4F0] px-7 py-4 text-[15px] text-[#1B1A17] transition-colors hover:bg-white"
+            >
+              Richiedi la tua demo gratuita
+              <ArrowRight size={16} />
+            </a>
+
+            <p className="mt-3 text-[13px] text-[#8C867B]">
+              Disponibile per un numero limitato di richieste al mese.
+            </p>
+          </div>
+
+          <div className="flex justify-center md:justify-end">
+            <PhoneFrame className="max-w-[260px]">
+              <VideoPlaceholder label="Demo — 15 secondi" sub="Esempio gratuito" />
+            </PhoneFrame>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function PriceCard({ title, price, features, cta, message, highlighted }) {
   return (
     <div
@@ -424,6 +495,16 @@ function Pricing() {
         <p className="mt-8 text-center text-[13px] text-[#8C867B]">
           Nessun abbonamento. Acquisti solo i video che ti servono.
         </p>
+        <p className="mt-2 text-center text-[13px] text-[#8C867B]">
+          Non hai mai provato CasaFrame?{" "}
+          <a
+            href="#demo"
+            className="text-[#B08D57] underline underline-offset-4 hover:text-[#1B1A17]"
+          >
+            Richiedi prima una demo gratuita
+          </a>
+          .
+        </p>
       </div>
     </section>
   );
@@ -438,15 +519,23 @@ function FinalCTA() {
       <p className="mx-auto mt-4 max-w-md text-[16px] text-[#4A473F]">
         Mandacele su WhatsApp. Pensiamo noi a trasformarle in un video.
       </p>
-      <a
-        href={waLink(MSG_GENERIC)}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#1B1A17] px-8 py-4 text-[15px] text-[#F6F4F0] transition-colors hover:bg-[#2E2B24]"
-      >
-        Crea il tuo video
-        <ArrowRight size={16} />
-      </a>
+      <div className="mt-8 flex flex-col items-center gap-3">
+        <a
+          href={waLink(MSG_GENERIC)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-full bg-[#1B1A17] px-8 py-4 text-[15px] text-[#F6F4F0] transition-colors hover:bg-[#2E2B24]"
+        >
+          Crea il tuo video
+          <ArrowRight size={16} />
+        </a>
+        <a
+          href="#demo"
+          className="text-[13px] text-[#B08D57] underline underline-offset-4 hover:text-[#1B1A17]"
+        >
+          oppure richiedi una demo gratuita
+        </a>
+      </div>
       <p className="mt-4 text-[13px] text-[#8C867B]">Da €49 per immobile.</p>
     </section>
   );
@@ -466,6 +555,7 @@ function Footer() {
           <div className="flex flex-wrap gap-x-8 gap-y-3 text-[14px] text-[#4A473F]">
             <a href="#showcase" className="hover:text-[#1B1A17]">Esempi</a>
             <a href="#come-funziona" className="hover:text-[#1B1A17]">Come funziona</a>
+            <a href="#demo" className="hover:text-[#1B1A17]">Demo gratuita</a>
             <a href="#prezzi" className="hover:text-[#1B1A17]">Prezzi</a>
             <a href={waLink(MSG_GENERIC)} target="_blank" rel="noopener noreferrer" className="hover:text-[#1B1A17]">
               WhatsApp
@@ -506,6 +596,7 @@ export default function App() {
       <BeforeAfter />
       <Showcase />
       <HowItWorks />
+      <FreeDemo />
       <Pricing />
       <FinalCTA />
       <Footer />
