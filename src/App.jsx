@@ -16,13 +16,13 @@ const waLink = (message) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
 const MSG_GENERIC =
-  "Ciao , vorrei informazioni sui video immobiliari.";
+  "Ciao vorrei informazioni sui video immobiliari.";
 const MSG_1 =
-  "Ciao , vorrei creare un video per un mio immobile. Vorrei informazioni sul video singolo da €49.";
+  "Ciao vorrei creare un video per un mio immobile. Vorrei informazioni sul video singolo da €49.";
 const MSG_3 =
-  "Ciao , sono interessato al pacchetto da 3 video. Vorrei maggiori informazioni.";
+  "Ciao sono interessato al pacchetto da 3 video. Vorrei maggiori informazioni.";
 const MSG_5 =
-  "Ciao , sono interessato al pacchetto da 5 video.";
+  "Ciao sono interessato al pacchetto da 5 video.";
 
 // ---------- Design tokens (via Tailwind arbitrary values) ----------
 // bg:      #F6F4F0 (avorio)
