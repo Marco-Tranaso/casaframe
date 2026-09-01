@@ -10,7 +10,6 @@ import { Menu, X, Play, ArrowRight } from "lucide-react";
  * - LOGO: testo o sostituiscilo con <img>
  */
 
-// SOSTITUISCI: numero WhatsApp reale (formato internazionale, solo cifre)
 const WHATSAPP_NUMBER = "393383983349";
 
 const waLink = (message) =>
@@ -19,7 +18,7 @@ const waLink = (message) =>
 const MSG_GENERIC =
   "Ciao CasaFrame, vorrei informazioni sui video immobiliari.";
 const MSG_1 =
-  "Ciao CasaFrame, vorrei creare un video per un mio immobile. Vorrei informazioni sul video singolo da €79.";
+  "Ciao CasaFrame, vorrei creare un video per un mio immobile. Vorrei informazioni sul video singolo da €49.";
 const MSG_3 =
   "Ciao CasaFrame, sono interessato al pacchetto da 3 video. Vorrei maggiori informazioni.";
 const MSG_5 =
@@ -138,10 +137,10 @@ function Navbar() {
 function Hero() {
   return (
     <section id="top" className="mx-auto max-w-6xl px-5 pb-16 pt-14 sm:px-8 sm:pt-20">
-      <div className="grid items-center gap-12 md:grid-cols-2 md:gap-10">
-        <div>
-          <p className="text-[13px] text-[#8C867B]">Video immobiliari, dalle tue foto</p>
-          <h1 className="mt-4 font-serif text-[42px] leading-[1.08] text-[#1B1A17] sm:text-[54px]">
+      <div className="flex flex-col gap-10 md:grid md:grid-cols-2 md:grid-rows-2 md:items-center md:gap-x-10 md:gap-y-6">
+        {/* Headline — sempre prima, anche su mobile */}
+        <div className="order-1 md:col-start-1 md:row-start-1">
+          <h1 className="font-serif text-[40px] leading-[1.08] text-[#1B1A17] sm:text-[54px]">
             Le tue foto.
             <br />
             Un video che valorizza
@@ -152,8 +151,19 @@ function Hero() {
             Trasformiamo le fotografie dei tuoi immobili in video verticali
             professionali, pronti per Instagram, TikTok e Facebook.
           </p>
+        </div>
 
-          <div className="mt-8 flex flex-col items-start gap-3">
+        {/* Video — su mobile subito dopo la headline; su desktop occupa entrambe le righe a destra */}
+        <div className="order-2 flex justify-center md:col-start-2 md:row-span-2 md:row-start-1 md:justify-end">
+          <PhoneFrame className="md:-rotate-1">
+            <VideoPlaceholder label="Attico — Torino" sub="Video verticale 9:16" />
+          </PhoneFrame>
+        </div>
+
+        {/* Prezzo + CTA — su mobile dopo il video */}
+        <div className="order-3 md:col-start-1 md:row-start-2">
+
+          <div className="mt-6 flex flex-col items-start gap-3">
             <a
               href={waLink(MSG_GENERIC)}
               target="_blank"
@@ -167,19 +177,6 @@ function Hero() {
               Ti bastano le foto dell'immobile. Al resto pensiamo noi.
             </p>
           </div>
-
-          <a
-            href="#showcase"
-            className="mt-10 inline-block border-b border-[#8C867B]/40 pb-0.5 text-[14px] text-[#4A473F] hover:border-[#1B1A17] hover:text-[#1B1A17]"
-          >
-            Guarda gli esempi
-          </a>
-        </div>
-
-        <div className="flex justify-center md:justify-end">
-          <PhoneFrame className="md:-rotate-1">
-            <VideoPlaceholder label="Attico — Torino" sub="Video verticale 9:16" />
-          </PhoneFrame>
         </div>
       </div>
     </section>
@@ -192,17 +189,16 @@ function BeforeAfter() {
       <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
         <div className="max-w-lg">
           <h2 className="font-serif text-[32px] leading-tight text-[#1B1A17] sm:text-[38px]">
-            Hai già tutto quello che ci serve.
+            Hai già le foto. Noi creiamo il video.
           </h2>
           <p className="mt-4 text-[16px] leading-relaxed text-[#4A473F]">
-            Parti dalle foto che utilizzi già per il tuo annuncio. Noi le
-            trasformiamo in un video dinamico e coinvolgente.
+            Parti dalle foto che usi già per l'annuncio. Il resto lo facciamo noi.
           </p>
         </div>
 
         <div className="mt-14 grid items-center gap-6 sm:grid-cols-[1fr_auto_1fr]">
           <div className="rounded-2xl border border-[#E4E0D8] bg-white p-6">
-            <p className="text-[12px] text-[#8C867B]">Prima</p>
+            <p className="text-[12px] text-[#8C867B]">Foto dell'immobile</p>
             <div className="mt-4 grid grid-cols-3 gap-2">
               {Array.from({ length: 9 }).map((_, i) => (
                 <div
@@ -211,20 +207,18 @@ function BeforeAfter() {
                 />
               ))}
             </div>
-            <p className="mt-4 text-[14px] text-[#4A473F]">10 foto statiche</p>
           </div>
 
           <div className="flex justify-center text-[#B08D57]">
             <ArrowRight size={24} className="hidden sm:block" />
-            <span className="text-[13px] text-[#8C867B] sm:hidden">diventano</span>
+            <span className="text-[13px] text-[#8C867B] sm:hidden">diventa</span>
           </div>
 
           <div className="rounded-2xl border border-[#1B1A17] bg-[#1B1A17] p-6">
-            <p className="text-[12px] text-[#B08D57]">CasaFrame</p>
+            <p className="text-[12px] text-[#B08D57]">Video CasaFrame</p>
             <div className="mt-4 flex aspect-[3/2] items-center justify-center rounded-md bg-gradient-to-br from-[#2E2B24] to-[#17160F]">
               <Play size={28} className="text-[#C9A45C]" fill="currentColor" />
             </div>
-            <p className="mt-4 text-[14px] text-[#F0EDE6]">1 Reel professionale</p>
           </div>
         </div>
       </div>
@@ -243,10 +237,10 @@ function Showcase() {
       <h2 className="font-serif text-[32px] text-[#1B1A17] sm:text-[38px]">
         Guarda cosa possiamo creare.
       </h2>
-      <div className="mt-12 grid gap-8 sm:grid-cols-3">
+      <div className="mt-12 grid gap-10 sm:grid-cols-3">
         {items.map((it) => (
           <div key={it.tag} className="flex flex-col items-center">
-            <PhoneFrame className="max-w-[260px]">
+            <PhoneFrame className="max-w-[340px]">
               <VideoPlaceholder label={it.label} sub={it.sub} />
             </PhoneFrame>
             <p className="mt-4 text-[14px] text-[#4A473F]">{it.tag}</p>
@@ -295,30 +289,6 @@ function HowItWorks() {
         <p className="mt-14 text-[15px] text-[#8C867B]">
           Nessun software da imparare. Nessun montaggio da fare.
         </p>
-      </div>
-    </section>
-  );
-}
-
-function Features() {
-  const items = [
-    { title: "Video verticale", body: "Formato 9:16 pensato per i social." },
-    { title: "Foto animate", body: "Movimenti e animazioni per rendere dinamiche le fotografie." },
-    { title: "Transizioni", body: "Montaggio fluido e moderno." },
-    { title: "Musica", body: "Colonna sonora coerente con il tipo di immobile." },
-    { title: "Branding", body: "Possibilità di inserire logo e identità dell'agenzia." },
-    { title: "Pronto per i social", body: "Pensato per Instagram, TikTok e Facebook." },
-  ];
-  return (
-    <section className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
-      <h2 className="font-serif text-[32px] text-[#1B1A17] sm:text-[38px]">Cosa ricevi</h2>
-      <div className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-        {items.map((it) => (
-          <div key={it.title} className="border-t border-[#E4E0D8] pt-4">
-            <h3 className="text-[15px] text-[#1B1A17]">{it.title}</h3>
-            <p className="mt-1.5 text-[14px] leading-relaxed text-[#8C867B]">{it.body}</p>
-          </div>
-        ))}
       </div>
     </section>
   );
@@ -381,14 +351,14 @@ function Pricing() {
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           <PriceCard
             title="1 video"
-            price="€79"
+            price="€49"
             features={["1 video verticale", ...base, "1 revisione"]}
             cta="Ordina su WhatsApp"
             message={MSG_1}
           />
           <PriceCard
             title="3 video"
-            price="€199"
+            price="€149"
             features={["3 video immobiliari", ...base, "1 revisione per video"]}
             cta="Ordina su WhatsApp"
             message={MSG_3}
@@ -396,12 +366,16 @@ function Pricing() {
           />
           <PriceCard
             title="5 video"
-            price="€299"
+            price="€229"
             features={["5 video immobiliari", ...base, "1 revisione per video"]}
             cta="Ordina su WhatsApp"
             message={MSG_5}
           />
         </div>
+
+        <p className="mt-8 text-center text-[13px] text-[#8C867B]">
+          Nessun abbonamento. Acquisti solo i video che ti servono.
+        </p>
       </div>
     </section>
   );
@@ -425,9 +399,7 @@ function FinalCTA() {
         Crea il tuo video
         <ArrowRight size={16} />
       </a>
-      <p className="mt-4 text-[13px] text-[#8C867B]">
-        Ti bastano le foto. Il resto lo facciamo noi.
-      </p>
+      <p className="mt-4 text-[13px] text-[#8C867B]">Da €49 per immobile.</p>
     </section>
   );
 }
@@ -476,13 +448,16 @@ function MobileStickyWhatsApp() {
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#F6F4F0] font-sans text-[#1B1A17] pb-20 md:pb-0">
+    <div className="min-h-screen bg-[#F6F4F0] font-sans text-[#1B1A17] pb-20 md:pb-0" style={{ fontFamily: "'Public Sans', ui-sans-serif, system-ui" }}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Public+Sans:wght@400;500&display=swap');
+        h1, h2, h3, .font-serif { font-family: 'Fraunces', serif; }
+      `}</style>
       <Navbar />
       <Hero />
       <BeforeAfter />
       <Showcase />
       <HowItWorks />
-      <Features />
       <Pricing />
       <FinalCTA />
       <Footer />
